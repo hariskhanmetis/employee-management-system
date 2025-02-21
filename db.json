@@ -1,0 +1,52 @@
+{
+  "employees": [
+    {
+      "id": "3",
+      "name": "Charlie Brown",
+      "age": 28,
+      "category": "Employee"
+    },
+    {
+      "id": "4",
+      "name": "David Miller",
+      "age": 35,
+      "category": "Employee"
+    },
+    {
+      "id": "5",
+      "name": "Eve Jackson",
+      "age": 42,
+      "category": "Manager"
+    },
+    {
+      "id": "6",
+      "name": "Franklin Gomez",
+      "age": 29,
+      "category": "Employee"
+    },
+    {
+      "id": "7",
+      "name": "Grace Lee",
+      "age": 38,
+      "category": "Manager"
+    },
+    {
+      "id": "8",
+      "name": "Henry Adams",
+      "age": 31,
+      "category": "Employee"
+    },
+    {
+      "id": "9",
+      "name": "Isabella Martinez",
+      "age": 45,
+      "category": "Manager"
+    },
+    {
+      "id": "10",
+      "name": "Jack Wilson",
+      "age": 27,
+      "category": "Employee"
+    }
+  ]
+}

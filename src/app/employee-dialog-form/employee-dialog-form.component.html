@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h2>
+<mat-dialog-content [formGroup]="employeeForm">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id" type="number" [disabled]="isEditMode">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Age</mat-label>
+    <input matInput formControlName="age" type="number">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category">
+      <mat-option value="Employee">Employee</mat-option>
+      <mat-option value="Manager">Manager</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="saveEmployee()" [disabled]="!employeeForm.valid">
+    {{ isEditMode ? 'Update' : 'Add' }}
+  </button>
+</mat-dialog-actions>
