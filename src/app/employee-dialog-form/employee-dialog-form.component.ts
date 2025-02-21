@@ -1,14 +1,14 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Employee } from '../models/employee';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Employee } from '../models/employee';
 
 @Component({
   selector: 'app-employee-dialog-form',
   templateUrl: './employee-dialog-form.component.html',
   styleUrls: ['./employee-dialog-form.component.css']
 })
-export class EmployeeDialogFormComponent {
+export class EmployeeDialogFormComponent implements OnInit {
   employeeForm!: FormGroup;
   isEditMode = false;
 
@@ -22,7 +22,7 @@ export class EmployeeDialogFormComponent {
     this.isEditMode = !!this.data;
 
     this.employeeForm = this.fb.group({
-      id: [this.data?.id || '', Validators.required],
+      id: [this.isEditMode ? this.data.id : this.generateRandomId()],
       name: [this.data?.name || '', Validators.required],
       age: [this.data?.age || '', [Validators.required, Validators.min(18)]],
       category: [this.data?.category || '', Validators.required]
@@ -35,5 +35,9 @@ export class EmployeeDialogFormComponent {
 
   saveEmployee() {
     this.dialogRef.close(this.employeeForm.value);
+  }
+
+  private generateRandomId(): string {
+    return Math.floor(1000 + Math.random() * 9000).toString(); 
   }
 }
