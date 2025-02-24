@@ -43,12 +43,6 @@
       "category": "Employee"
     },
     {
-      "id": "2334",
-      "name": "Nancy White",
-      "age": 41,
-      "category": "Manager"
-    },
-    {
       "id": "8891",
       "name": "Oliver Scott",
       "age": 26,
@@ -85,8 +79,8 @@
       "category": "Manager"
     },
     {
-      "id": 8958,
-      "name": "Haris Khan",
+      "id": 10748,
+      "name": "HAHA",
       "age": 23,
       "category": "Employee"
     }

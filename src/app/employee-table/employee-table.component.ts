@@ -74,9 +74,15 @@ export class EmployeeTableComponent implements OnInit, AfterViewInit {
 
   deleteEmployee(id: string) {
     if (confirm('Are you sure you want to delete this user?')) {
-      this.employeeService.deleteEmployee(id).subscribe(() => {
-        this.loadUsers();
-        this.snackBar.open('User deleted successfully', 'Close', { duration: 3000 });
+      this.employeeService.deleteEmployee(id).subscribe({
+        next: () => {
+          this.loadUsers();
+          this.snackBar.open('User deleted successfully', 'Close', { duration: 3000 });
+        },
+        error: (error) => {
+          console.error('Error deleting employee:', error);
+          this.snackBar.open('Error deleting user. Please try again.', 'Close', { duration: 3000 });
+        }
       });
     }
   }

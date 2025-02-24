@@ -16,8 +16,7 @@ export class EmployeeDialogFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<EmployeeDialogFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Employee,
-    private snackBar: MatSnackBar
+    @Inject(MAT_DIALOG_DATA) public data: Employee
   ) { }
 
   ngOnInit(): void {
