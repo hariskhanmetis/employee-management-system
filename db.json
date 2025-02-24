@@ -1,14 +1,8 @@
 {
   "employees": [
     {
-      "id": "1278",
-      "name": "Franklin Gomez",
-      "age": 29,
-      "category": "Employee"
-    },
-    {
       "id": "5432",
-      "name": "Grace Lee",
+      "name": "Grace Leee",
       "age": 38,
       "category": "Manager"
     },
@@ -89,6 +83,12 @@
       "name": "Tina Brooks",
       "age": 37,
       "category": "Manager"
+    },
+    {
+      "id": 8958,
+      "name": "Haris Khan",
+      "age": 23,
+      "category": "Employee"
     }
   ]
 }

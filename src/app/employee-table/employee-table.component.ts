@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Employee } from '../models/employee';
 import { EmployeeService } from '../services/employee.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,7 +13,7 @@ import { EmployeeDialogFormComponent } from '../employee-dialog-form/employee-di
   templateUrl: './employee-table.component.html',
   styleUrls: ['./employee-table.component.css']
 })
-export class EmployeeTableComponent implements OnInit {
+export class EmployeeTableComponent implements OnInit, AfterViewInit {
   constructor(
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar,
@@ -24,19 +24,22 @@ export class EmployeeTableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'age', 'category', 'actions'];
   dataSource = new MatTableDataSource<Employee>(this.employees);
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;;
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
     this.loadUsers();
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   loadUsers() {
     this.employeeService.getEmployees().subscribe((employees) => {
       this.employees = employees;
-      this.dataSource = new MatTableDataSource<Employee>(this.employees);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource.data = this.employees;
     });
   }
 

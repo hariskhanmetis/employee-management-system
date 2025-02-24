@@ -22,26 +22,18 @@ export class EmployeeDialogFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.isEditMode = !!this.data;
-    if (this.isEditMode) {
-      this.employeeForm = this.fb.group({
-        name: ['', [Validators.required]],
-        age: ['', [Validators.required]],
-        category: ['', [Validators.required]]
-      });
-      console.log("Dialog received data:", this.data);
-      this.snackBar.open('User is being edited...', 'Close', { duration: 3000 });
-      console.log("User information is being edited...");
-      this.employeeForm.patchValue(this.data);
-    } 
     
-    else {
-      this.snackBar.open('New user is being added...', 'Close', { duration: 3000 });
-      console.log("New user is being added...");
-      this.employeeForm = this.fb.group({
-        name: ['', [Validators.required]],
-        age: ['', [Validators.required]],
-        category: ['', [Validators.required]]
-      });
+    this.employeeForm = this.fb.group({
+      name: ['', [Validators.required]],
+      age: ['', [Validators.required]],
+      category: ['', [Validators.required]]
+    });
+
+    if (this.isEditMode) {
+      console.log("Editing Employee:", this.data);
+      this.employeeForm.patchValue(this.data);
+    } else {
+      console.log("Adding New Employee...");
     }
   }
 
@@ -50,13 +42,17 @@ export class EmployeeDialogFormComponent implements OnInit {
   }
 
   saveEmployee() {
-    const updatedEmployee = {
-      ...this.data,
+    const newEmployee: Employee = {
+      id: this.isEditMode ? this.data.id : this.generateRandomId(), 
       ...this.employeeForm.value
     };
 
-    console.log("Saving Employee:", updatedEmployee);
-    this.dialogRef.close(updatedEmployee);
+    console.log("Saving Employee:", newEmployee);
+    this.dialogRef.close(newEmployee);
+  }
+
+  generateRandomId(): number {
+    return Math.floor(1000 + Math.random() * 9999);
   }
 
 }
