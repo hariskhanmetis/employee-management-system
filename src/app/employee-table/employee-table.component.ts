@@ -14,11 +14,11 @@ import { EmployeeDialogFormComponent } from '../employee-dialog-form/employee-di
   styleUrls: ['./employee-table.component.css']
 })
 export class EmployeeTableComponent implements OnInit {
-  constructor (
+  constructor(
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   employees: Employee[] = [];
   displayedColumns: string[] = ['id', 'name', 'age', 'category', 'actions'];
@@ -40,15 +40,6 @@ export class EmployeeTableComponent implements OnInit {
     });
   }
 
-  deleteEmployee(id: string) {
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.employeeService.deleteEmployee(id).subscribe(() => {
-        this.loadUsers();
-        this.snackBar.open('User deleted successfully', 'Close', { duration: 3000 });
-      });
-    }
-  }
-
   addEmployee() {
     const dialogRef = this.dialog.open(EmployeeDialogFormComponent);
     dialogRef.afterClosed().subscribe(result => {
@@ -64,9 +55,9 @@ export class EmployeeTableComponent implements OnInit {
 
   editEmployee(employee: Employee) {
     const dialogRef = this.dialog.open(EmployeeDialogFormComponent, {
-    data: employee 
+      data: employee
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.employeeService.updateEmployee(result).subscribe(() => {
@@ -77,5 +68,14 @@ export class EmployeeTableComponent implements OnInit {
       }
     });
   }
-  
+
+  deleteEmployee(id: string) {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.employeeService.deleteEmployee(id).subscribe(() => {
+        this.loadUsers();
+        this.snackBar.open('User deleted successfully', 'Close', { duration: 3000 });
+      });
+    }
+  }
+
 }

@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule, 
     MatFormFieldModule,
     MatOptionModule, 
-    MatInputModule
+    MatInputModule,
+    MatSortModule
   ],
   providers: [MatSnackBar],
   bootstrap: [AppComponent]
