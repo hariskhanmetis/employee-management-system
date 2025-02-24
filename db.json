@@ -19,12 +19,6 @@
       "category": "Manager"
     },
     {
-      "id": "8516",
-      "name": "Jack Wilson",
-      "age": 27,
-      "category": "Employee"
-    },
-    {
       "id": "9023",
       "name": "Kevin Carter",
       "age": 33,
@@ -77,12 +71,6 @@
       "name": "Tina Brooks",
       "age": 37,
       "category": "Manager"
-    },
-    {
-      "id": 10748,
-      "name": "HAHA",
-      "age": 23,
-      "category": "Employee"
     }
   ]
 }

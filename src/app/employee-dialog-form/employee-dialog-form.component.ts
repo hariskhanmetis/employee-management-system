@@ -41,17 +41,17 @@ export class EmployeeDialogFormComponent implements OnInit {
   }
 
   saveEmployee() {
-    const newEmployee: Employee = {
-      id: this.isEditMode ? this.data.id : this.generateRandomId(), 
-      ...this.employeeForm.value
-    };
-
-    console.log("Saving Employee:", newEmployee);
-    this.dialogRef.close(newEmployee);
+    const employeeData = this.employeeForm.value;
+    if (!this.isEditMode) {
+      employeeData.id = this.generateRandomId();
+    } else {
+      employeeData.id = this.data.id;
+    }
+    this.dialogRef.close(employeeData);
   }
 
-  generateRandomId(): number {
-    return Math.floor(1000 + Math.random() * 9999);
+  private generateRandomId(): number {
+    return Math.floor(1000 + Math.random() * 9999); 
   }
 
 }
