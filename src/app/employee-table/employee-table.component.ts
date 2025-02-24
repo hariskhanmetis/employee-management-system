@@ -40,7 +40,7 @@ export class EmployeeTableComponent implements OnInit {
     });
   }
 
-  deleteEmployee(id: number) {
+  deleteEmployee(id: string) {
     if (confirm('Are you sure you want to delete this user?')) {
       this.employeeService.deleteEmployee(id).subscribe(() => {
         this.loadUsers();
@@ -53,22 +53,29 @@ export class EmployeeTableComponent implements OnInit {
     const dialogRef = this.dialog.open(EmployeeDialogFormComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadUsers();
-        this.snackBar.open('User added successfully!', 'Close', { duration: 3000 });
+        this.employeeService.addEmployee(result).subscribe(() => {
+          this.loadUsers();
+          this.snackBar.open('User added successfully!', 'Close', { duration: 3000 });
+          console.log("User added successfully!");
+        });
       }
     });
   }
 
   editEmployee(employee: Employee) {
     const dialogRef = this.dialog.open(EmployeeDialogFormComponent, {
-      data: employee
+    data: employee 
     });
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadUsers();
-        this.snackBar.open('User updated successfully!', 'Close', { duration: 3000 });
+        this.employeeService.updateEmployee(result).subscribe(() => {
+          this.loadUsers();
+          this.snackBar.open('User updated successfully!', 'Close', { duration: 3000 });
+          console.log("Employee updated successfully!");
+        });
       }
     });
   }
-
+  
 }

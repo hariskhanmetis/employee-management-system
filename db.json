@@ -1,24 +1,6 @@
 {
   "employees": [
     {
-      "id": "1056",
-      "name": "Charlie Brown",
-      "age": 28,
-      "category": "Employee"
-    },
-    {
-      "id": "2145",
-      "name": "David Miller",
-      "age": 35,
-      "category": "Employee"
-    },
-    {
-      "id": "3984",
-      "name": "Eve Jackson",
-      "age": 42,
-      "category": "Manager"
-    },
-    {
       "id": "1278",
       "name": "Franklin Gomez",
       "age": 29,

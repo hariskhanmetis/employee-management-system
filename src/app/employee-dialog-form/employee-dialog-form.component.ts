@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Employee } from '../models/employee';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-dialog-form',
@@ -15,18 +16,33 @@ export class EmployeeDialogFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<EmployeeDialogFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Employee
+    @Inject(MAT_DIALOG_DATA) public data: Employee,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.isEditMode = !!this.data;
-
-    this.employeeForm = this.fb.group({
-      id: [this.isEditMode ? this.data.id : this.generateRandomId()],
-      name: [this.data?.name || '', Validators.required],
-      age: [this.data?.age || '', [Validators.required, Validators.min(18)]],
-      category: [this.data?.category || '', Validators.required]
-    });
+    if (this.isEditMode) {
+      this.employeeForm = this.fb.group({
+        name: ['', [Validators.required]],
+        age: ['', [Validators.required]],
+        category: ['', [Validators.required]]
+      });
+      console.log("Dialog received data:", this.data);
+      this.snackBar.open('User is being edited...', 'Close', { duration: 3000 });
+      console.log("User information is being edited...");
+      this.employeeForm.patchValue(this.data);
+    } 
+    
+    else {
+      this.snackBar.open('New user is being added...', 'Close', { duration: 3000 });
+      console.log("New user is being added...");
+      this.employeeForm = this.fb.group({
+        name: ['', [Validators.required]],
+        age: ['', [Validators.required]],
+        category: ['', [Validators.required]]
+      });
+    }
   }
 
   closeDialog() {
@@ -34,10 +50,13 @@ export class EmployeeDialogFormComponent implements OnInit {
   }
 
   saveEmployee() {
-    this.dialogRef.close(this.employeeForm.value);
+    const updatedEmployee = {
+      ...this.data,
+      ...this.employeeForm.value
+    };
+
+    console.log("Saving Employee:", updatedEmployee);
+    this.dialogRef.close(updatedEmployee);
   }
 
-  private generateRandomId(): string {
-    return Math.floor(1000 + Math.random() * 9000).toString(); 
-  }
 }

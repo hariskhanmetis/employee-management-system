@@ -11,7 +11,7 @@
 h1 {
     font-size: 30px;
     font-weight: bold;
-    color: #333;
+    color: #0c0c0c;
     margin-bottom: 20px; 
     z-index: 10;
 }
@@ -31,11 +31,17 @@ h1 {
   }
 
 mat-icon {
-    color: #f44336;
     cursor: pointer;
 }
 
 .delete-button {
+    color: #f44336;
+    border: none;
+    background-color: transparent;
+}
+
+.edit-button {
+    color: #0077ee;
     border: none;
     background-color: transparent;
 }
