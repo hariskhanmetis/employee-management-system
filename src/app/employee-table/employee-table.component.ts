@@ -72,7 +72,7 @@ export class EmployeeTableComponent implements OnInit, AfterViewInit {
     });
   }
 
-  deleteEmployee(id: number) {
+  deleteEmployee(id: string) {
     if (confirm('Are you sure you want to delete this user?')) {
       this.employeeService.deleteEmployee(id).subscribe({
         next: () => {

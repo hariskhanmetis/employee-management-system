@@ -1,12 +1,6 @@
 {
   "employees": [
     {
-      "id": "5432",
-      "name": "Grace Leee",
-      "age": 38,
-      "category": "Manager"
-    },
-    {
       "id": "7621",
       "name": "Henry Adams",
       "age": 31,

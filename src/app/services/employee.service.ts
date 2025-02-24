@@ -19,7 +19,7 @@ export class EmployeeService {
     return this.http.post<Employee>(this.url, employee);
   }
 
-  deleteEmployee(id: number): Observable<Employee> {
+  deleteEmployee(id: string): Observable<Employee> {
     return this.http.delete<Employee>(`${this.url}/${id}`);
   }
 

@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Employee } from '../models/employee';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-dialog-form',
@@ -44,6 +43,7 @@ export class EmployeeDialogFormComponent implements OnInit {
     const employeeData = this.employeeForm.value;
     if (!this.isEditMode) {
       employeeData.id = this.generateRandomId();
+      employeeData.id = employeeData.id.toString();
     } else {
       employeeData.id = this.data.id;
     }
