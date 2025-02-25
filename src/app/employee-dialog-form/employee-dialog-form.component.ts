@@ -22,8 +22,8 @@ export class EmployeeDialogFormComponent implements OnInit {
     this.isEditMode = !!this.data;
     
     this.employeeForm = this.fb.group({
-      name: ['', [Validators.required]],
-      age: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[A-Za-z\s]+$/)]],
+      age: ['', [Validators.required, Validators.min(18), Validators.max(60)]],
       category: ['', [Validators.required]]
     });
 
